@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Magic link{% endblock %}
+
+{% block body %}
+    <h1>Recevez un lien de connexion</h1>
+
+    {{ form_start(form) }}
+
+    {{ form_row(form.email) }}
+    <button type="submit" class="btn">Recevoir</button>
+    {{ form_end(form) }}
+{% endblock %}
