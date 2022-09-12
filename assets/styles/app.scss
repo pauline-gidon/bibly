@@ -1,3 +1,25 @@
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
+@import "reset";
+@import "form";
+
 body {
-    background-color: lightgray;
+  font-family: 'Zen Kaku Gothic Antique', sans-serif;
+}
+
+header{
+  .bandeau{
+    background: url("../../public/images/background-bandeau.jpg");
+    background-position: center;
+    background-size: cover;
+    img {
+      box-sizing: border-box;
+      width: 13rem;
+      height: 13rem;
+      border-radius: 50%;
+      border: solid 8px #FFF;
+      padding: 9px;
+    }
+  }
 }

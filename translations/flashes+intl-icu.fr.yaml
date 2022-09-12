@@ -1,0 +1,46 @@
+app:
+    account:
+        update_success: Votre compte a été mis à jour.
+    library:
+        create_success: La bibliothèque a été créé.
+        edit_success: La bibliothèque a été mis à jour.
+        edit_error: Le formulaire contient des erreurs.
+        delete_success: La bibliothèque a été supprimé.
+        delete_error: Une erreur est survenue lors de la suppression de la bibliothèque.
+    domain:
+        edit_success: Le domaine a été modifié.
+        create_success: Le domaine a été créé.
+    user:
+        edit_success: L'utilisateur a été modifié.
+        create_success: L'utilisateur a été créé.
+    user_registration:
+        confirm_success: La création de votre compte est finalisée.
+    request_new_password:
+        confirm_success: Votre demande de réinitialisation de mot de passe a été envoyée.
+    reset_password:
+        confirm_success: Votre mot de passe a été mis à jour.
+    magazine:
+        edit_success: Le magazine a été modifié.
+        create_success: Le magazine a été créé.
+    resort:
+        edit_success: La station a été modifiée.
+        create_success: La station a été créée.
+    publication:
+        edit_settings_success: La publication a été modifiée.
+        edit_plan_success: La pagination a été modifiée.
+        create_success: La publication a été créée.
+        delete_success: La publication a été supprimée.
+        delete_error: Une erreur est survenue lors de la suppression de la publication.
+        error: Vous ne pouvez pas publier ce numéro car au moins un des articles n'a pas de statut publié.
+        export:
+            no_articles_to_export: Aucun article à importer.
+            export_articles_success: Les articles ont bien été exportés.
+        remove_article_success: La liste des articles a bien été mise à jour.
+    reopening_article_request:
+        create_success: La demande de retour en rédaction a été envoyée.
+        already_done: Une demande de retour en rédaction est en cours.
+    page:
+        edit_page: La page a été modifiée.
+    export:
+        export_articles_success: Les articles ont été exportés
+        generic_error: Une erreur est survenue lors de l'export.

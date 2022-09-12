@@ -1,0 +1,31 @@
+app:
+  menu:
+    dashboard: Dashboard
+    library: Mes bibliothèques
+  header:
+    connection: Connexion
+    registration: Inscription
+    logout: Déconnexion
+    profile: Profil
+  form:
+    email: Email
+    password: Mot de passe
+    forgot_password: Mot de passe oublié ?
+    connection:
+      title: Se connecter
+      button: Connexion
+    register:
+      title: Création de compte
+      button: S'inscrire
+      agree_terms: Accepter les conditions
+    library:
+      add: Ajouter une bibliothèque
+      name : Nom de la bibliothèque
+      liste: Liste des bibliothèques
+  save: Enregistrer
+  return: Retour
+  delete: Supprimer
+  library:
+    add:
+      shelf: Dans quel bibliothèque ?
+

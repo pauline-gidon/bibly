@@ -5,6 +5,7 @@ namespace App\Repository;
 use App\Entity\Library;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
+use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 
 /**
  * @extends ServiceEntityRepository<Library>
@@ -16,7 +17,7 @@ use Doctrine\Persistence\ManagerRegistry;
  */
 class LibraryRepository extends ServiceEntityRepository
 {
-    public function __construct(ManagerRegistry $registry)
+    public function __construct(ManagerRegistry $registry, private TokenStorageInterface $storage,)
     {
         parent::__construct($registry, Library::class);
     }
@@ -42,17 +43,19 @@ class LibraryRepository extends ServiceEntityRepository
 //    /**
 //     * @return Library[] Returns an array of Library objects
 //     */
-//    public function findByExampleField($value): array
-//    {
-//        return $this->createQueryBuilder('l')
-//            ->andWhere('l.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->orderBy('l.id', 'ASC')
-//            ->setMaxResults(10)
-//            ->getQuery()
-//            ->getResult()
-//        ;
-//    }
+    public function findAllByUser(): array
+    {
+        /** @var User $user */
+        $user = $this->storage->getToken()->getUser();
+
+        return $this->createQueryBuilder('l')
+            ->andWhere('l.user= :user')
+            ->setParameter('user', $user)
+            ->orderBy('l.name', 'ASC')
+            ->getQuery()
+            ->getResult()
+        ;
+    }
 
 //    public function findOneBySomeField($value): ?Library
 //    {

@@ -1,0 +1,11 @@
+{% extends 'layout/back/vsb.html.twig' %}
+
+{% block title %}Ajouter une bibliothèque{% endblock %}
+
+{% block main %}
+<div class="mx-32">
+    {{ include('library/_form.html.twig') }}
+</div>
+
+    <a href="{{ path('index') }}">Annuler</a>
+{% endblock %}
