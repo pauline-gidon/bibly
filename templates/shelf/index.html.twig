@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Shelf index{% endblock %}
+
+{% block body %}
+    <h1>Shelf index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Image</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for shelf in shelves %}
+            <tr>
+                <td>{{ shelf.id }}</td>
+                <td>{{ shelf.name }}</td>
+                <td>{{ shelf.image }}</td>
+                <td>
+                    <a href="{{ path('app_shelf_show', {'id': shelf.id}) }}">show</a>
+                    <a href="{{ path('app_shelf_edit', {'id': shelf.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="4">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_shelf_new') }}">Create new</a>
+{% endblock %}

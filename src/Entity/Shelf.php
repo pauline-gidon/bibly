@@ -6,10 +6,18 @@ use App\Repository\ShelfRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Knp\DoctrineBehaviors\Model\Timestampable\TimestampableTrait;
+use Symfony\Component\HttpFoundation\File\File;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
+use Vich\UploaderBundle\Mapping\Annotation\Uploadable;
+use DateTimeImmutable;
 
+#[Vich\Uploadable]
 #[ORM\Entity(repositoryClass: ShelfRepository::class)]
 class Shelf
 {
+    use TimestampableTrait;
+
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
@@ -20,6 +28,9 @@ class Shelf
 
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $image = null;
+
+    #[Vich\UploadableField(mapping: 'shelf_image', fileNameProperty: 'image')]
+    private ?File $imageFile = null;
 
     #[ORM\ManyToOne(inversedBy: 'shelf')]
     private ?Library $library = null;
@@ -61,6 +72,21 @@ class Shelf
         return $this;
     }
 
+    public function setImageFile(?File $imageFile = null): void
+    {
+        $this->imageFile = $imageFile;
+
+        if (null !== $imageFile) {
+            $this->updatedAt = new DateTimeImmutable();
+        }
+    }
+
+    public function getImageFile(): ?File
+    {
+        return $this->imageFile;
+    }
+
+
     public function getLibrary(): ?Library
     {
         return $this->library;
@@ -101,5 +127,9 @@ class Shelf
         }
 
         return $this;
+    }
+    public function __toString()
+    {
+        return $this->getName();
     }
 }

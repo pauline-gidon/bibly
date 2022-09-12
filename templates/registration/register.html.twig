@@ -1,21 +1,26 @@
-{% extends 'base.html.twig' %}
+{% extends 'layout/front/layout.html.twig' %}
 
-{% block title %}Register{% endblock %}
+{% block title %}Création de compte{% endblock %}
 
-{% block body %}
+{% block main %}
+<div class="w-full mx-auto mb-28">
     {% for flash_error in app.flashes('verify_email_error') %}
         <div class="alert alert-danger" role="alert">{{ flash_error }}</div>
     {% endfor %}
 
-    <h1>Register</h1>
+    {{ form_start(registrationForm,{'attr':{'class': 'front'}}) }}
+    <h1>{{ 'app.form.register.title'| trans }}</h1>
+    {{ form_row(registrationForm.email) }}
+    {{ form_row(registrationForm.plainPassword, {
+        label: 'Password'
+    }) }}
+{#    #}
+    <div class="flex items-center mr-4">
+        {{ form_widget(registrationForm.agreeTerms) }}
+        {{ form_label(registrationForm.agreeTerms) }}
+    </div>
 
-    {{ form_start(registrationForm) }}
-        {{ form_row(registrationForm.email) }}
-        {{ form_row(registrationForm.plainPassword, {
-            label: 'Password'
-        }) }}
-        {{ form_row(registrationForm.agreeTerms) }}
-
-        <button type="submit" class="btn">Register</button>
+    <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white py-2 px-4 rounded focus:outline-none focus:shadow-outline">{{ 'app.form.register.button'| trans }}</button>
     {{ form_end(registrationForm) }}
-{% endblock %}
+</div>
+{% endblock main %}

@@ -1,0 +1,40 @@
+{% extends 'layout/back/layout.html.twig' %}
+
+            {% block main %}
+                {% if librarys %}
+
+
+                    <div class=" mx-auto p-4 w-full max-w-md bg-white rounded-lg border shadow-md sm:p-8 dark:bg-gray-800 dark:border-gray-700">
+                        <div class="flex justify-between items-center mb-4">
+                            <h5 class="text-xl font-bold leading-none text-gray-900 dark:text-white">{{ 'app.form.library.liste'| trans }}</h5>
+                        </div>
+                        <div class="flow-root">
+                            <ul role="list" class="divide-y divide-gray-200 dark:divide-gray-700">
+                                {% for library in librarys %}
+                                    <li class="py-3 sm:py-4">
+                                        <div class="flex items-center space-x-4">
+                                            <div class="flex-1 min-w-0">
+                                                <p class="text-sm font-medium text-gray-900 truncate dark:text-white">
+                                                    <a href="{{ path('library_show', {'id': library.id}) }}"
+                                                       class="inline-flex items-center font-medium text-sky-600 dark:text-sky-500 hover:text-sky-900">
+                                                        {{ library.name }} &#10140;
+                                                    </a>
+                                                </p>
+                                            </div>
+                                            <div class="inline-flex items-center text-base font-semibold text-gray-900 dark:text-white">
+                                                <a href="{{ path('library_delete', {'id': library.id}) }}"
+                                                   class="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-4 py-2 mr-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900">
+                                                    {{ 'app.delete'| trans }}
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                    </div>
+
+                {% endif %}
+
+
+            {% endblock main %}

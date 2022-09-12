@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit Shelf{% endblock %}
+
+{% block body %}
+    <h1>Edit Shelf</h1>
+
+    {{ include('shelf/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('app_shelf_index') }}">back to list</a>
+
+    {{ include('shelf/_delete_form.html.twig') }}
+{% endblock %}

@@ -1,0 +1,49 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Mon dashboard{% endblock %}
+
+{% block body %}
+    <header class="relative">
+        <div class="w-full h-16 bandeau relative">
+        </div>
+        <ul class="w-4/5 p-4 my-0 mx-auto flex absolute -bottom-20 right-0">
+            <li class="p-3 mr-3 ml-auto border-solid border-2 border-slate-300 rounded-lg"><a class="text-inherit" href="{{ path('profile') }}">{{ 'app.header.profile'| trans }}
+                </a>
+            </li>
+            <li class="p-3 mr-6 border-solid border-2 border-slate-300 rounded-lg"><a class="text-inherit"
+                                                                                      href="{{ path('app_logout') }}">{{ 'app.header.logout'| trans }}</a>
+            </li>
+        </ul>
+    </header>
+
+    <div class="grid grid-cols-6 gap-6">
+        <div class="w-60 min-h-screen bg-slate-100">
+            <p>
+                <a href="{{ path('index') }}" class="block text-center text-5xl my-4">
+                    &#x1F3E0;
+                </a>
+            </p>
+            <p class="w-fit mt-3 p-3 mb-4 mx-auto border-solid border-2 border-slate-300 rounded-lg">
+                <a class="text-inherit" href="{{ path('library_new') }}">{{ 'app.form.library.add'| trans }}</a>
+            </p>
+
+            {% if app.user.library %}
+                {% for library in app.user.library %}
+                    <p class="pl-4 mb-1 text-gray-500 dark:text-sky-400 mx-auto"><a href="{{ path('library_show', {'id': library.id}) }}" class="inline-flex items-center font-medium text-sky-600 dark:text-sky-500 hover:text-sky-900">
+                            {{ library.name }}
+
+                        </a></p>
+
+                {% endfor %}
+            {% endif %}
+        </div>
+
+        <div class="col-span-5 pt-28">
+            {% block main %}
+            {% endblock main%}
+        </div>
+
+    </div>
+
+
+{% endblock %}

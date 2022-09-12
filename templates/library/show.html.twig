@@ -1,0 +1,16 @@
+{% extends 'layout/back/layout.html.twig' %}
+
+{% block title %}Library{% endblock %}
+
+{% block main %}
+
+    <a href="{{ path('shelf_new') }}">Ajouter une étagère à la bibliothèque</a>
+
+    <h2 class="text-center text-2xl mb-5 text-gray-600">{{ library.name }}</h2>
+
+    <a href="{{ path('index') }}">back to list</a>
+
+    <a href="{{ path('library_edit', {'id': library.id}) }}">edit</a>
+
+    {{ include('library/_delete_form.html.twig') }}
+{% endblock main %}

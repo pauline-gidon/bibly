@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Accueil{% endblock %}
+
+{% block body %}
+ <header>
+  <div class="w-full h-36 bandeau relative">
+   <img class="absolute left-52 -bottom-28"
+        src="{{ asset('/images/square-book.jpg') }}">
+  </div>
+  <ul class="w-4/5 p-4 my-0 mx-auto flex mb-9">
+   <li class="p-3 mr-3 ml-auto border-solid border-2 border-slate-300 rounded-lg"><a class="text-inherit"
+                                                                                     href="{{ path('app_login') }}">{{ 'app.header.connection'| trans }}</a>
+   </li>
+   <li class="p-3 mr-6 border-solid border-2 border-slate-300 rounded-lg"><a class="text-inherit"
+                                                                             href="{{ path('app_register') }}">{{ 'app.header.registration'| trans }}</a>
+   </li>
+  </ul>
+ </header>
+
+ <div class="w-4/5 mx-auto">
+  {% block main %}
+
+    {% if librarys %}
+     <h1 class="text-center text-3xl mb-5 text-gray-600">Liste des bibliothèques</h1>
+
+     <div class="text-center">
+     {% for library in librarys %}
+      <a href="#" class="inline-block justify-center mx-4 p-5 mb-4 text-base font-medium text-gray-500 bg-gray-50 rounded-lg hover:text-gray-900 hover:bg-gray-100 dark:text-gray-400 dark:bg-gray-800 dark:hover:bg-gray-700 dark:hover:text-white border-2 border-inherit">
+       <span class="mr-1">&#127984;</span>
+       <span class="w-full">{{ library.name }}</span>
+      </a>
+     {% endfor %}
+     </div>
+    {% endif %}
+
+  {% endblock main %}
+ </div>
+
+{% endblock body %}
+
+
