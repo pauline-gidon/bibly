@@ -7,6 +7,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Knp\DoctrineBehaviors\Model\Timestampable\TimestampableTrait;
+use Knp\DoctrineBehaviors\Contract\Entity\TimestampableInterface;
 use Symfony\Component\HttpFoundation\File\File;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
 use Vich\UploaderBundle\Mapping\Annotation\Uploadable;
@@ -14,7 +15,7 @@ use DateTimeImmutable;
 
 #[Vich\Uploadable]
 #[ORM\Entity(repositoryClass: ShelfRepository::class)]
-class Shelf
+class Shelf implements TimestampableInterface
 {
     use TimestampableTrait;
 
