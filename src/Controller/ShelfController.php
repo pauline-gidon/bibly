@@ -33,7 +33,7 @@ class ShelfController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $shelfRepository->add($shelf, true);
 
-            return $this->redirectToRoute('library_show', ['id' => $library->getId()], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('library_show', ['id' => $shelf->getLibrary()->getId()], Response::HTTP_SEE_OTHER);
         }
 
         return $this->renderForm('shelf/new.html.twig', [

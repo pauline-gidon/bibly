@@ -27,8 +27,9 @@ class ShelfType extends AbstractType
                 'label'=> 'Nom',
                 'required'=> true,
                 ])
-            ->add('image',VichImageType::class,[
-                'label'=> 'l\'image représentant la collection'
+            ->add('imageFile',VichImageType::class,[
+                'label'=> 'l\'image représentant la collection',
+                'required' => false,
             ])
             ->add('library', EntityType::class,[
                 'class' => Library::class,
