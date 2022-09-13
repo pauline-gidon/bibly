@@ -7,10 +7,27 @@
     <a href="{{ path('shelf_new') }}">Ajouter une étagère à la bibliothèque</a>
 
     <h2 class="text-center text-2xl mb-5 text-gray-600">{{ library.name }}</h2>
+    <div>
+        {% if library.shelfs %}
+            {{ dump(library.shelfs) }}
+            {% for shelf in library.shelfs  %}
+{#            {% for shelf in library.shelfs %}#}
+            <div class="max-w-2xl mx-4 sm:max-w-sm md:max-w-sm lg:max-w-sm xl:max-w-sm sm:mx-auto md:mx-auto lg:mx-auto xl:mx-auto mt-16 bg-white shadow-xl rounded-lg text-gray-900">
+                <div class="rounded-t-lg h-32 overflow-hidden">
+{#                    <img class="object-cover object-top w-full" src='{{ vich_uploader_asset(shelf, 'imageFile') }}' alt='Mountain'>#}
+                </div>
 
-    <a href="{{ path('index') }}">back to list</a>
+                <div class="p-4 border-t mx-8 mt-2">
+{#                    <button class="block mx-auto rounded-full bg-gray-900 hover:shadow-lg font-semibold text-white px-6 py-2">{{ shelf.name }}</button>#}
+                </div>
+            </div>
 
-    <a href="{{ path('library_edit', {'id': library.id}) }}">edit</a>
+        {% endfor %}
+        {% endif %}
+    </div>
+
+
+    <a href="{{ path('library_edit', {'id': library.id}) }}">Modifier le nom de ma bibliothèque</a>
 
     {{ include('library/_delete_form.html.twig') }}
 {% endblock main %}

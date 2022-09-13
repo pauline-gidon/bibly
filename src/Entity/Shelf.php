@@ -33,7 +33,7 @@ class Shelf implements TimestampableInterface
     #[Vich\UploadableField(mapping: 'shelf_image', fileNameProperty: 'image')]
     private ?File $imageFile = null;
 
-    #[ORM\ManyToOne(inversedBy: 'shelf')]
+    #[ORM\ManyToOne(inversedBy: 'shelfs')]
     private ?Library $library = null;
 
     #[ORM\OneToMany(mappedBy: 'shelf', targetEntity: Book::class)]
