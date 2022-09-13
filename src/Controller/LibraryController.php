@@ -14,16 +14,20 @@ use Symfony\Component\Routing\Annotation\Route;
 #[Route('/library', name: 'library_', methods: ['GET'])]
 class LibraryController extends AbstractController
 {
+    public function __construct(private LibraryRepository $libraryRepository){
+
+    }
+
     #[Route('/', name: 'index', methods: ['GET'])]
-    public function index(LibraryRepository $libraryRepository): Response
+    public function index(): Response
     {
         return $this->render('library/index.html.twig', [
-            'libraries' => $libraryRepository->findAll(),
+            'libraries' => $this->libraryRepository->findAll(),
         ]);
     }
 
     #[Route('/new', name: 'new', methods: ['GET', 'POST'])]
-    public function new(Request $request, LibraryRepository $libraryRepository): Response
+    public function new(Request $request): Response
     {
         $library = new Library();
         $form = $this->createForm(LibraryType::class, $library);
@@ -34,7 +38,7 @@ class LibraryController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $library->setUser($user);
-            $libraryRepository->add($library, true);
+            $this->libraryRepository->add($library, true);
 
             $this->addFlash('success', 'app.library.create_success');
 
@@ -56,13 +60,13 @@ class LibraryController extends AbstractController
     }
 
     #[Route('/edit/{id}', name: 'edit', methods: ['GET', 'POST'])]
-    public function edit(Request $request, Library $library, LibraryRepository $libraryRepository): Response
+    public function edit(Request $request, Library $library): Response
     {
         $form = $this->createForm(LibraryType::class, $library);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $libraryRepository->add($library, true);
+            $this->libraryRepository->add($library, true);
 
             return $this->redirectToRoute('app_library_index', [], Response::HTTP_SEE_OTHER);
         }
@@ -74,9 +78,9 @@ class LibraryController extends AbstractController
     }
 
     #[Route('/delete/{id}', name: 'delete', methods: ['DELETE'])]
-    public function delete(Request $request, Library $library, LibraryRepository $libraryRepository): Response
+    public function delete(Request $request, Library $library): Response
     {
-            $libraryRepository->remove($library, true);
+            $this->libraryRepository->remove($library, true);
             return $this->redirectToRoute('index', [], Response::HTTP_SEE_OTHER);
     }
 }

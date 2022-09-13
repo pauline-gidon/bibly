@@ -23,11 +23,11 @@ class Library
     private ?User $user = null;
 
     #[ORM\OneToMany(mappedBy: 'library', targetEntity: Shelf::class)]
-    private Collection $shelf;
+    private ?Collection $shelfs;
 
     public function __construct()
     {
-        $this->shelf = new ArrayCollection();
+        $this->shelfs = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -62,15 +62,15 @@ class Library
     /**
      * @return Collection<int, Shelf>
      */
-    public function getShelf(): Collection
+    public function getShelfs(): Collection
     {
-        return $this->shelf;
+        return $this->shelfs;
     }
 
     public function addShelf(Shelf $shelf): self
     {
-        if (!$this->shelf->contains($shelf)) {
-            $this->shelf->add($shelf);
+        if (!$this->shelfs->contains($shelf)) {
+            $this->shelfs->add($shelf);
             $shelf->setLibrary($this);
         }
 
@@ -79,7 +79,7 @@ class Library
 
     public function removeShelf(Shelf $shelf): self
     {
-        if ($this->shelf->removeElement($shelf)) {
+        if ($this->shelfs->removeElement($shelf)) {
             // set the owning side to null (unless already changed)
             if ($shelf->getLibrary() === $this) {
                 $shelf->setLibrary(null);
